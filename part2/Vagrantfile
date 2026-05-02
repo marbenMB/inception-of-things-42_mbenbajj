@@ -1,0 +1,32 @@
+ENV['VAGRANT_NO_PARALLEL'] = 'yes'
+
+SERVER_IP   = "192.168.56.110"
+SERVER_NAME = "mmezianiS"
+BOX         = "bento/ubuntu-24.04"
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define SERVER_NAME do |server|
+    server.vm.box      = BOX
+    server.vm.hostname = SERVER_NAME
+    server.vm.network "private_network", ip: SERVER_IP
+
+    server.vm.synced_folder "./confs", "/home/vagrant/confs"
+
+    server.vm.provider "virtualbox" do |vb|
+      vb.name   = SERVER_NAME
+      vb.memory = 2048
+      vb.cpus   = 2
+      vb.customize ["modifyvm", :id, "--natdnsproxy1",        "on"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    end
+
+    server.vm.provision "shell",
+      path: "scripts/server.sh",
+      env: { "SERVER_IP" => SERVER_IP }
+
+    server.vm.provision "shell",
+      path: "scripts/deploy.sh"
+  end
+
+end
