@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-one
+  template:
+    metadata:
+      labels:
+        app: app-one
+    spec:
+      containers:
+      - name: app-one
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+        # Optional: custom index so you can tell them apart
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh","-c","echo '<h1>Hello from app1</h1>' > /usr/share/nginx/html/index.html"]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-one-svc
+spec:
+  selector:
+    app: app-one
+  ports:
+  - port: 80
+    targetPort: 80

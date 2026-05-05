@@ -76,7 +76,7 @@ config.vm.define "mmezianiS" do |mmezianiS|
     mmezianiS.vm.provider "virtualbox" do |vb|
       vb.name = "mmezianiS"
     end
-  
+    mmezianiS.vm.synced_folder "./manifests", "/home/vagrant/manifests"
     mmezianiS.vm.provision "shell", inline: <<-SHELL
       echo "Provisioning mmezianiS"
       sudo apt-get update
