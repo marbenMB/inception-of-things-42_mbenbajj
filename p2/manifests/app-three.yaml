@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-three
+  labels:
+    app: app-three
 spec:
   replicas: 1
   selector:
@@ -20,7 +22,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh","-c","echo '<h1>Hello from app3 (default)</h1>' > /usr/share/nginx/html/index.html"]
+              command: [ "/bin/sh", "-c", "echo '<h1>Hello from app3 (default)</h1>' > /usr/share/nginx/html/index.html" ]
 ---
 apiVersion: v1
 kind: Service

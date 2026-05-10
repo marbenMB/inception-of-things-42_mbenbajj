@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app-two
+  labels:
+    app: app-two
 spec:
-  replicas: 3          # <-- required by subject
+  replicas: 3 # <-- required by subject
   selector:
     matchLabels:
       app: app-two
@@ -20,7 +22,7 @@ spec:
         lifecycle:
           postStart:
             exec:
-              command: ["/bin/sh","-c","echo '<h1>Hello from app2</h1>' > /usr/share/nginx/html/index.html"]
+              command: [ "/bin/sh", "-c", "echo '<h1>Hello from app2</h1>' > /usr/share/nginx/html/index.html" ]
 ---
 apiVersion: v1
 kind: Service
