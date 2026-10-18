@@ -71,8 +71,7 @@ Vagrant.configure("2") do |config|
 
 config.vm.define "abellakrS" do |abellakrS|
     abellakrS.vm.hostname = "abellakrS"
-    abellakrS.vm.network "private_network", ip: "192.168.56.110", primary: true
-    #  config.vm.network "forwarded_port", guest: 6443, host: 6443, auto_correct: true
+    abellakrS.vm.network "private_network", ip: "192.168.56.110"
     abellakrS.vm.provider "virtualbox" do |vb|
       vb.name = "abellakrS"
     end
@@ -82,8 +81,7 @@ config.vm.define "abellakrS" do |abellakrS|
 
 config.vm.define "mbenbajjSW" do |mbenbajjSW|
     mbenbajjSW.vm.hostname = "mbenbajjSW"
-    mbenbajjSW.vm.network "private_network", ip: "192.168.56.111", primary: true
-    # config.vm.network "forwarded_port", guest: 6442, host: 6442, auto_correct: true
+    mbenbajjSW.vm.network "private_network", ip: "192.168.56.111"
     mbenbajjSW.vm.provider "virtualbox" do |vb|
       vb.name = "mbenbajjSW"
     end
