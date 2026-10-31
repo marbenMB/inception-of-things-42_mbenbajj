@@ -1,2 +1,13 @@
+# Ignore everything at the root of the repository...
+/*
+
+# ...except the project folders
+!/p1/
+!/p2/
+!/p3/
+!/bonus/
+!/docs/
+!/.gitignore
+
+# Vagrant's local machine state, inside any folder
 .vagrant
-notes/
